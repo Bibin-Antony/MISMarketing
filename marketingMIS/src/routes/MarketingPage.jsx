@@ -15,49 +15,49 @@ import StickyAdmission from '../components/StickyAdmission';
 
 const MarketingPage = () => {
   return (
-    <div className="relative min-h-screen bg-[#F8F1F1]">
+    <div className="relative ">
       {/* Sticky Admission Notice */}
       <StickyAdmission />
 
       {/* Main Content */}
-      <div className="container mx-auto px-4">
-        <section id="header" className="py-4">
+      <div className="container ">
+        <section id="header">
           <Header />
         </section>
 
-        <section id="hero" className="py-8">
+        <section id="hero" >
           <HeroSection />
         </section>
 
-        <section id="why-choose-us" className="py-16">
+        <section id="why-choose-us" >
           <WhyChooseUs />
         </section>
 
-        <section id="academics" className="py-16">
+        <section id="academics" >
           <AcademicsSection />
         </section>
 
-        <section id="sports" className="py-16">
+        <section id="sports" >
           <SportsSection />
         </section>
 
-        <section id="testimonials" className="py-16">
+        <section id="testimonials" >
           <TestimonialsSection />
         </section>
 
-        <section id="awards" className="py-16">
+        <section id="awards" >
           <AwardsSection />
         </section>
 
-        <section id="campus-tour" className="py-16">
+        <section id="campus-tour" >
           <CampusTour />
         </section>
 
-        <section id="director-message" className="py-16">
+        <section id="director-message" >
           <DirectorMessage />
         </section>
 
-        <section id="lead-capture" className="py-16">
+        <section id="lead-capture" >
           <LeadCaptureForm />
         </section>
       </div>

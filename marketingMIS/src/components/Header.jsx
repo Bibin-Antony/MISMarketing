@@ -1,7 +1,9 @@
 // Header.jsx
 import React, { useState } from 'react';
 import { Menu, X, Phone, Calendar } from 'lucide-react';
-import Button from './Button'; // Changed from { Button }
+import { motion, AnimatePresence } from 'framer-motion';
+import Button from './Button';
+import logo from "../assets/Logos/PrimaryLogo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,76 +17,78 @@ const Header = () => {
     { name: 'Campus Tour', href: '#campus-tour' },
   ];
 
+  const currentYear = new Date().getFullYear();
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <header className="py-4 mt-15 bg-white shadow-sm">
-      <nav className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img 
-              src="/api/placeholder/50/50" 
-              alt="Mysore International School Logo" 
-              className="h-12 w-auto"
-            />
-            <span className="ml-2 text-xl font-bold text-[#264653]">MIS</span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-[#8A2E88] transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              variant="outline"
-              className="flex items-center gap-2 border-[#8A2E88] text-[#8A2E88] hover:bg-[#8A2E88] hover:text-white"
-              onClick={() => window.location.href = '#contact'}
+    <>
+      <header className="py-4 fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <nav className="container mx-auto px-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center"
             >
-              <Phone className="w-4 h-4" />
-              Call Us
-            </Button>
-            <Button 
-              className="flex items-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white"
-              onClick={() => window.location.href = '#campus-tour'}
+              <img
+                src={logo}
+                alt="Mysore International School Logo"
+                className="h-12 w-auto"
+              />
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="hidden md:flex items-center space-x-8"
             >
-              <Calendar className="w-4 h-4" />
-              Book Tour
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-600"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <a
+              {navItems.map((item, index) => (
+                <motion.a
                   key={item.name}
                   href={item.href}
                   className="text-gray-600 hover:text-[#8A2E88] transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
                   {item.name}
-                </a>
+                </motion.a>
               ))}
-              <Button 
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="hidden md:flex items-center space-x-4"
+            >
+              <Button
                 variant="outline"
                 className="flex items-center gap-2 border-[#8A2E88] text-[#8A2E88] hover:bg-[#8A2E88] hover:text-white"
                 onClick={() => window.location.href = '#contact'}
@@ -92,18 +96,97 @@ const Header = () => {
                 <Phone className="w-4 h-4" />
                 Call Us
               </Button>
-              <Button 
+              <Button
                 className="flex items-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white"
                 onClick={() => window.location.href = '#campus-tour'}
               >
                 <Calendar className="w-4 h-4" />
                 Book Tour
               </Button>
-            </div>
+            </motion.div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="md:hidden text-gray-600"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </motion.button>
           </div>
+        </nav>
+      </header>
+
+      {/* Full Screen Mobile Navigation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-white z-40 md:hidden pt-24 pb-10 px-6 flex flex-col justify-between"
+          >
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col space-y-8"
+            >
+              {navItems.map((item) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  variants={itemVariants}
+                  className="text-2xl font-medium text-gray-800 hover:text-[#8A2E88] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+              <motion.div variants={itemVariants} className="pt-8">
+                <Button
+                  variant="outline"
+                  className="w-full mb-4 flex items-center justify-center gap-2 border-[#8A2E88] text-[#8A2E88] hover:bg-[#8A2E88] hover:text-white py-3"
+                  onClick={() => {
+                    window.location.href = '#contact';
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  <Phone className="w-5 h-5" />
+                  Call Us
+                </Button>
+                <Button
+                  className="w-full flex items-center justify-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white py-3"
+                  onClick={() => {
+                    window.location.href = '#campus-tour';
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  <Calendar className="w-5 h-5" />
+                  Book Tour
+                </Button>
+              </motion.div>
+            </motion.div>
+            
+            {/* Copyright in mobile menu */}
+            <motion.div 
+              variants={itemVariants}
+              className="text-center text-gray-500 text-sm mt-auto"
+            >
+              © {currentYear} Mysore International School. All rights reserved.
+            </motion.div>
+          </motion.div>
         )}
-      </nav>
-    </header>
+      </AnimatePresence>
+      
+      {/* Main content space compensation */}
+      <div className="h-20"></div>
+      
+      {/* Footer removed as requested */}
+    </>
   );
 };
 

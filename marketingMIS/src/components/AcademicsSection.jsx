@@ -1,23 +1,22 @@
-// AcademicsSection.jsx
 import React from 'react';
-import { 
-  GraduationCap, 
-  Star, 
+import {
+  GraduationCap,
+  Star,
   Trophy,
-  Calendar 
+  Calendar
 } from 'lucide-react';
-import Button from './Button'; // Changed from { Button }
-import { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardContent 
+import Button from './Button';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent
 } from './Card';
 
 const AcademicsSection = () => {
   const academicFeatures = [
     {
-      icon: <GraduationCap className="w-12 h-12 text-[#8A2E88]" />,
+      icon: <GraduationCap className="w-12 h-12 text-white" />,
       title: "Academics that Inspire",
       features: [
         "Future-ready learning with innovation & creativity at its core",
@@ -27,7 +26,7 @@ const AcademicsSection = () => {
       ]
     },
     {
-      icon: <Star className="w-12 h-12 text-[#F4A261]" />,
+      icon: <Star className="w-12 h-12 text-white" />,
       title: "Leadership that Empowers",
       features: [
         "Public speaking, teamwork, and decision-making skills",
@@ -37,7 +36,7 @@ const AcademicsSection = () => {
       ]
     },
     {
-      icon: <Trophy className="w-12 h-12 text-[#E76F51]" />,
+      icon: <Trophy className="w-12 h-12 text-white" />,
       title: "Athletes in the Making",
       features: [
         "Professional training in football, basketball, cricket, tennis, and track sports",
@@ -49,61 +48,67 @@ const AcademicsSection = () => {
   ];
 
   return (
-    <div className="space-y-12">
-      <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold text-[#264653]">
-          Academics, Leadership & Sports – The Perfect Balance!
-        </h2>
-        <p className="text-lg text-gray-600">
-          Providing a holistic education that prepares students for future success
-        </p>
-      </div>
+    <div className="py-16 bg-[#8A2E88] w-[100vw]">
+      <div className="container mx-auto px-4 space-y-12">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Academics, Leadership & Sports – The Perfect Balance!
+          </h2>
+          <p className="text-lg text-white/80">
+            Providing a holistic education that prepares students for future success
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {academicFeatures.map((feature, index) => (
-          <Card 
-            key={index} 
-            className="hover:shadow-lg transition-shadow border-t-4"
-            style={{ borderTopColor: index === 0 ? '#8A2E88' : index === 1 ? '#F4A261' : '#E76F51' }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {academicFeatures.map((feature, index) => (
+            <Card
+              key={index}
+              className="bg-white rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+            >
+              <div className={`h-2 w-full ${
+                index === 0 ? 'bg-[#8A2E88]' : 
+                index === 1 ? 'bg-[#F4A261]' : 'bg-[#E76F51]'
+              }`}></div>
+              <CardHeader className="text-center pt-8">
+                <div className={`flex justify-center mb-6 w-20 h-20 mx-auto rounded-full flex items-center justify-center ${
+                  index === 0 ? 'bg-[#8A2E88]' : 
+                  index === 1 ? 'bg-[#F4A261]' : 'bg-[#E76F51]'
+                }`}>
+                  {feature.icon}
+                </div>
+                <CardTitle className="text-xl font-bold text-[#264653]">
+                  {feature.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  {feature.features.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className={`min-w-[8px] h-2 w-2 rounded-full mt-2 ${
+                        index === 0 ? 'bg-[#8A2E88]' : 
+                        index === 1 ? 'bg-[#F4A261]' : 'bg-[#E76F51]'
+                      }`} />
+                      <span className="text-gray-600 text-base">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <div className="text-center py-8 px-4 bg-white/10 rounded-xl space-y-6 max-w-3xl mx-auto">
+          <p className="text-xl text-white font-semibold">
+            Admissions Open! Your child deserves an education beyond textbooks.
+          </p>
+          <Button
+            className="bg-white text-[#8A2E88] hover:bg-white/90 flex items-center gap-2 px-6 py-3 text-lg shadow-lg"
+            onClick={() => window.location.href = '#campus-tour'}
           >
-            <CardHeader className="text-center">
-              <div className="flex justify-center mb-4">
-                {feature.icon}
-              </div>
-              <CardTitle className="text-xl text-[#264653]">
-                {feature.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {feature.features.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <div className="min-w-[8px] h-2 w-2 rounded-full mt-2"
-                      style={{ 
-                        backgroundColor: index === 0 ? '#8A2E88' : 
-                          index === 1 ? '#F4A261' : '#E76F51' 
-                      }}
-                    />
-                    <span className="text-gray-600">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="text-center space-y-4">
-        <p className="text-lg text-[#E76F51] font-semibold">
-          Admissions Open! Your child deserves an education beyond textbooks.
-        </p>
-        <Button 
-          className="bg-[#8A2E88] hover:bg-[#8A2E88]/90 text-white flex items-center gap-2"
-          onClick={() => window.location.href = '#campus-tour'}
-        >
-          <Calendar className="w-4 h-4" />
-          Schedule a School Tour
-        </Button>
+            <Calendar className="w-5 h-5" />
+            Schedule a School Tour
+          </Button>
+        </div>
       </div>
     </div>
   );

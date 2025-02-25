@@ -22,7 +22,7 @@ const SportsSection = () => {
     {
       icon: "⚽",
       title: "FIFA-Standard Football Field",
-      description: "State-of-the-art artificial turf with flood lights and spectator gallery",
+      description: "State-of-the-art artificial turf spectator gallery",
       features: ["Professional coaching", "Regular tournaments", "Advanced training equipment"],
       color: "bg-green-500",
       ctaText: "Football Programs"
@@ -30,19 +30,20 @@ const SportsSection = () => {
     {
       icon: "🏀",
       title: "NBA-Standard Basketball Court",
-      description: "Indoor court with premium flooring and modern amenities",
-      features: ["Height-adjustable hoops", "Professional scoring system", "Climate controlled"],
+      description: "Outdoor court with premium synthetic flooring and modern amenities",
+      features: ["Height-adjustable hoops", "Professional scoring system", "Weather-resistant surface"],
       color: "bg-orange-500",
       ctaText: "Basketball Programs"
     },
     {
       icon: "🎾",
       title: "ITF-Approved Tennis Courts",
-      description: "Multiple courts with professional-grade surfaces",
-      features: ["All-weather courts", "Tournament ready", "Professional coaching"],
+      description: "A professional-grade tennis court with synthetic flooring",
+      features: ["Weather synthetic courts", "Tournament ready", "Professional coaching"],
       color: "bg-yellow-500",
       ctaText: "Tennis Programs"
     },
+    
     {
       icon: "🏏",
       title: "Professional Cricket Nets",
@@ -53,7 +54,7 @@ const SportsSection = () => {
     },
     {
       icon: "🏃",
-      title: "4-Lane Professional Running Track",
+      title: "5-Lane Professional Running Track",
       description: "IAAF standard synthetic track for athletics",
       features: ["Professional timing system", "Multiple lanes", "All-weather surface"],
       color: "bg-red-500",

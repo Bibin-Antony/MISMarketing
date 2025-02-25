@@ -76,7 +76,7 @@ const HeroSection = () => {
             >
               <Award className="w-6 h-6 text-[#E76F51]" />
               <p className="text-xl font-semibold text-yellow-300">
-                Admissions Open for 2024-25! Secure Your Spot Today.
+                Admissions Open for 2025-26! Secure Your Spot Today.
               </p>
             </motion.div>
 
@@ -99,30 +99,25 @@ const HeroSection = () => {
               </a>
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="mt-8"
-            >
-              <p className="text-purple-100">Why our students excel:</p>
-              <div className="grid grid-cols-2 gap-y-3 gap-x-8 mt-3">
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-yellow-300 rounded-full mr-2"></div>
-                  <span className="text-white">Personalized Learning</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-yellow-300 rounded-full mr-2"></div>
-                  <span className="text-white">International Curriculum</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-yellow-300 rounded-full mr-2"></div>
-                  <span className="text-white">Leadership Development</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-yellow-300 rounded-full mr-2"></div>
-                  <span className="text-white">State-of-the-art Facilities</span>
-                </div>
-              </div>
-            </motion.div>
+            <motion.div variants={itemVariants} className="mt-8">
+  <p className="text-purple-100 mb-4">Why our students excel:</p>
+  <div className="flex flex-row flex-nowrap items-center justify-between w-full px-4">
+    <div className="flex items-center whitespace-nowrap mx-4">
+      <div className="w-2 h-2 bg-yellow-300 rounded-full mr-3"></div>
+      <span className="text-white">Personalized Learning</span>
+    </div>
+    
+    <div className="flex items-center whitespace-nowrap mx-4">
+      <div className="w-2 h-2 bg-yellow-300 rounded-full mr-3"></div>
+      <span className="text-white">Leadership Development</span>
+    </div>
+    
+    <div className="flex items-center whitespace-nowrap mx-4">
+      <div className="w-2 h-2 bg-yellow-300 rounded-full mr-3"></div>
+      <span className="text-white">State-of-the-art Facilities</span>
+    </div>
+  </div>
+</motion.div>
           </motion.div>
 
           {/* Right Content - Image (hidden on mobile) */}

@@ -89,7 +89,7 @@ const FeaturesSection = () => {
                         </div>
                         <h3 className="mt-8 text-xl font-bold text-[#264653]">Global Exposure</h3>
                         <p className="mt-4 text-base text-gray-600">
-                            Preparing students for IITs, IIMs, Ivy League, and beyond.
+                            Preparing students for IITs, Ivy League, and beyond.
                         </p>
                     </div>
 

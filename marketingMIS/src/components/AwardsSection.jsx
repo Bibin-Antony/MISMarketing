@@ -41,7 +41,7 @@ const AwardsSection = () => {
   ];
 
   const recognitions = [
-    "Ranked among Top 10 International Schools in Karnataka",
+    "Ranked among Top 10 CBSE Schools in Karnataka",
     "Best Sports Infrastructure Award 2023",
     "Innovation in Education Award",
     "Excellence in Co-Curricular Activities"

@@ -1,5 +1,7 @@
 // LeadCaptureForm.jsx
 import React, { useState } from 'react';
+import map from "../assets/images/map.png"
+import parent from "../assets/images/parent.png"
 import { 
   Rocket, 
   Send, 
@@ -267,9 +269,9 @@ const LeadCaptureForm = () => {
               </CardContent>
             </Card>
             
-            {/* Contact Cards */}
+            {/* Contact Cards - Now displayed vertically */}
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6"
+              className="grid grid-cols-1 gap-4 mt-6"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -277,7 +279,7 @@ const LeadCaptureForm = () => {
             >
               <motion.div variants={itemVariants}>
                 <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-gray-50">
-                  <CardContent className="p-6 flex items-start gap-3">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
                     <div className="bg-[#8A2E88]/10 p-2 rounded-full">
                       <Clock className="w-5 h-5 text-[#8A2E88]" />
                     </div>
@@ -294,7 +296,7 @@ const LeadCaptureForm = () => {
 
               <motion.div variants={itemVariants}>
                 <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-gray-50">
-                  <CardContent className="p-6 flex items-start gap-3">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
                     <div className="bg-[#8A2E88]/10 p-2 rounded-full">
                       <Phone className="w-5 h-5 text-[#8A2E88]" />
                     </div>
@@ -311,7 +313,7 @@ const LeadCaptureForm = () => {
 
               <motion.div variants={itemVariants}>
                 <Card className="border-0 shadow-md hover:shadow-lg transition-shadow bg-gray-50">
-                  <CardContent className="p-6 flex items-start gap-3">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
                     <div className="bg-[#8A2E88]/10 p-2 rounded-full">
                       <Mail className="w-5 h-5 text-[#8A2E88]" />
                     </div>
@@ -382,18 +384,13 @@ const LeadCaptureForm = () => {
               </CardHeader>
               <CardContent className="p-0 mt-4">
                 <div className="aspect-[4/3] rounded-b-xl overflow-hidden">
-                  {/* Map iframe - Replace with actual Google Maps embed */}
-                  <div className="w-full h-full bg-gray-100 relative">
+                  <div className="w-full h-full relative">
                     <img
-                      src="/api/placeholder/800/600"
+                      src={map} 
                       alt="School location map"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <MapPin className="w-8 h-8 text-[#E76F51]" />
-                      <p className="font-semibold text-gray-800 mt-2">Mysore International School</p>
-                      <p className="text-sm text-gray-600">123 Education Blvd, Mysore, Karnataka</p>
-                    </div>
+                   
                   </div>
                 </div>
               </CardContent>
@@ -411,7 +408,11 @@ const LeadCaptureForm = () => {
                 "Choosing Mysore International School was the best decision we made for our daughter. The balanced approach to education and amazing faculty have helped her grow tremendously."
               </p>
               <div className="mt-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+                <img 
+                  src={parent} 
+                  alt="Priya Sharma"
+                  className="w-10 h-10 rounded-full object-cover"
+                />
                 <div>
                   <p className="font-semibold text-[#264653]">Priya Sharma</p>
                   <p className="text-sm text-gray-600">Parent of Ananya, Grade 5</p>

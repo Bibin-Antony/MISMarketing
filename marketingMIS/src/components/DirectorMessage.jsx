@@ -7,6 +7,7 @@ import {
   BookOpen,
   Users
 } from 'lucide-react';
+import image1 from "../assets/images/chairman.jpg"
 import { motion } from 'framer-motion';
 import Button from './Button';
 import {
@@ -66,7 +67,7 @@ const DirectorMessage = () => {
             <span className="relative inline-block">
               <span className="absolute inset-x-0 bottom-0 h-3 bg-[#8A2E88]/10"></span>
               <h2 className="text-4xl md:text-5xl font-bold text-[#264653] relative">
-                Director's Message
+                Chairman's Message
               </h2>
             </span>
           </div>
@@ -96,8 +97,8 @@ const DirectorMessage = () => {
                 <div className="relative">
                   <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-[#8A2E88] to-[#6A1B67] p-1">
                     <img
-                      src="/api/placeholder/400/400"
-                      alt="Dr. Joseph K Thomas, Director"
+                      src={image1}
+                      alt="Dr. Joseph K Thomas, Chairman"
                       className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
@@ -108,7 +109,7 @@ const DirectorMessage = () => {
                 
                 <div className="mt-10 bg-gray-50 rounded-lg p-5">
                   <h4 className="text-lg font-bold text-[#264653] mb-2">Dr. Joseph K Thomas</h4>
-                  <p className="text-[#8A2E88] font-medium mb-3">Director, Mysore International School</p>
+                  <p className="text-[#8A2E88] font-medium mb-3">Chairman, Mysore International School</p>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <BookOpen className="w-4 h-4" />
                     <span>Ph.D. in Educational Leadership</span>

@@ -1,64 +1,42 @@
-// SportsSection.jsx
 import React from 'react';
-import { 
-  Trophy,
-  User,
-  CalendarCheck,
-  ChevronRight,
-  Star
-} from 'lucide-react';
-import { motion } from 'framer-motion';
-import Button from './Button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from "./Card";
+import { Trophy, User, CalendarCheck, ChevronRight } from 'lucide-react';
 
 const SportsSection = () => {
   const sportsFacilities = [
     {
       icon: "⚽",
       title: "FIFA-Standard Football Field",
-      description: "State-of-the-art artificial turf spectator gallery",
+      description: "State-of-the-art artificial turf with spectator gallery",
       features: ["Professional coaching", "Regular tournaments", "Advanced training equipment"],
-      color: "bg-green-500",
-      ctaText: "Football Programs"
+      colorClass: "bg-[#8A2E88]"
     },
     {
       icon: "🏀",
       title: "NBA-Standard Basketball Court",
       description: "Outdoor court with premium synthetic flooring and modern amenities",
       features: ["Height-adjustable hoops", "Professional scoring system", "Weather-resistant surface"],
-      color: "bg-orange-500",
-      ctaText: "Basketball Programs"
+      colorClass: "bg-[#264653]"
     },
     {
       icon: "🎾",
       title: "ITF-Approved Tennis Courts",
       description: "A professional-grade tennis court with synthetic flooring",
       features: ["Weather synthetic courts", "Tournament ready", "Professional coaching"],
-      color: "bg-yellow-500",
-      ctaText: "Tennis Programs"
+      colorClass: "bg-[#8A2E88]"
     },
-    
     {
       icon: "🏏",
       title: "Professional Cricket Nets",
       description: "Multiple practice nets with bowling machines",
       features: ["Bowling machines", "Video analysis", "Professional equipment"],
-      color: "bg-blue-500",
-      ctaText: "Cricket Programs"
+      colorClass: "bg-[#264653]"
     },
     {
       icon: "🏃",
       title: "5-Lane Professional Running Track",
       description: "IAAF standard synthetic track for athletics",
       features: ["Professional timing system", "Multiple lanes", "All-weather surface"],
-      color: "bg-red-500",
-      ctaText: "Track Programs"
+      colorClass: "bg-[#8A2E88]"
     }
   ];
 
@@ -85,218 +63,143 @@ const SportsSection = () => {
     }
   ];
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
-  };
-
   return (
-    <div className="py-16 bg-gradient-to-b from-white to-gray-50 w-[100vw]">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="text-center space-y-4 mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-block">
-            <span className="relative inline-block">
-              <span className="absolute inset-x-0 bottom-0 h-3 bg-[#8A2E88]/20"></span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#264653] relative">
-                World-Class Sports Facilities
-              </h2>
-            </span>
-          </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Nurturing champions with state-of-the-art facilities and professional coaching
+    <section className="py-12 bg-white sm:py-16 lg:py-20 overflow-hidden">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
+        {/* Background decorative elements */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#8A2E88]/10 rounded-full"></div>
+        <div className="absolute top-1/2 -left-24 w-32 h-32 bg-[#264653]/10 rounded-full"></div>
+        <div className="absolute bottom-0 right-1/4 w-24 h-24 bg-[#E76F51]/10 rounded-full"></div>
+        
+        <div className="text-center relative">
+          <h2 className="text-3xl font-bold text-[#264653] sm:text-4xl xl:text-5xl">
+            World-Class Sports Facilities
+          </h2>
+          <p className="mt-4 text-xl text-[#8A2E88] sm:mt-8">
+            Nurturing Champions with Professional Equipment and Coaching
           </p>
-        </motion.div>
+        </div>
 
-        {/* Sports Facilities Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        {/* Sports Facilities Cards */}
+        <div className="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 sm:gap-x-12 gap-y-12 md:grid-cols-3 md:gap-8 xl:mt-24 relative">
           {sportsFacilities.map((facility, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="hover:shadow-xl transition-all duration-300 h-full overflow-hidden border-0 shadow-lg">
-                <div className={`h-2 w-full ${facility.color}`}></div>
-                <CardHeader className="p-6">
-                  <div className="flex items-center gap-4">
-                    <span className="text-5xl">{facility.icon}</span>
-                    <CardTitle className="text-xl font-bold text-[#264653]">
-                      {facility.title}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="px-6 pb-4">
-                  <CardDescription className="text-base mb-5 text-gray-700">
-                    {facility.description}
-                  </CardDescription>
-                  <ul className="space-y-3">
-                    {facility.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-600">
-                        <div className="h-2 w-2 rounded-full bg-[#8A2E88] mt-2" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <div className="p-6 pt-0">
-                  <a href="#learn-more" className="inline-flex items-center text-[#8A2E88] font-medium hover:underline">
-                    {facility.ctaText}
+            <div key={index} className="p-6 rounded-lg transition-all duration-500 transform hover:scale-105 group relative overflow-hidden bg-white hover:bg-gradient-to-br hover:from-[#8A2E88]/5 hover:to-[#264653]/5 shadow-md">
+              <div className="relative">
+                <div className="flex justify-center">
+                  <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{facility.icon}</span>
+                </div>
+                <h3 className="mt-6 text-xl font-bold text-[#264653] group-hover:text-[#8A2E88] transition-colors duration-300">{facility.title}</h3>
+                <p className="mt-4 text-base text-gray-600">
+                  {facility.description}
+                </p>
+                <ul className="mt-4 text-base text-gray-600 space-y-2 text-left pl-4">
+                  {facility.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center">
+                      <span className="inline-block w-2 h-2 bg-[#8A2E88] group-hover:bg-gradient-to-r group-hover:from-[#8A2E88] group-hover:to-[#264653] rounded-full mr-2 transition-colors duration-300"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 text-left">
+                  <a href="#sports-programs" className="inline-flex items-center text-[#8A2E88] font-medium hover:underline">
+                    Learn More 
                     <ChevronRight className="w-4 h-4 ml-1" />
                   </a>
                 </div>
-              </Card>
-            </motion.div>
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Achievements Section */}
-        <motion.div 
-          className="rounded-xl p-10 bg-gradient-to-br from-[#8A2E88]/10 to-white shadow-lg border border-[#8A2E88]/20 mb-20"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="flex items-center gap-4 mb-10">
-            <div className="p-3 bg-[#8A2E88] rounded-full text-white">
-              <Trophy className="w-8 h-8" />
-            </div>
-            <h3 className="text-3xl font-bold text-[#264653]">
+        <div className="mt-16 p-8 bg-gradient-to-br from-[#8A2E88]/10 to-white rounded-lg shadow-md border border-[#8A2E88]/20">
+          <div className="flex items-center justify-center mb-8">
+            <Trophy className="w-6 h-6 text-[#8A2E88] mr-4" />
+            <h3 className="text-2xl font-bold text-[#264653]">
               Our Sports Achievements
             </h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((achievement, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.4 }}
-              >
+              <div key={index} className="p-6 rounded-lg transition-all duration-500 transform hover:scale-105 group relative overflow-hidden bg-white hover:bg-gradient-to-br hover:from-[#8A2E88]/5 hover:to-[#264653]/5 shadow-md">
                 <div className="text-center mb-4">
-                  <span className="text-4xl">{achievement.icon}</span>
+                  <span className="text-5xl">{achievement.icon}</span>
                 </div>
-                <h4 className="text-lg font-bold text-[#264653] text-center mb-1">{achievement.title}</h4>
-                <p className="text-gray-600 text-center text-sm">{achievement.detail}</p>
-              </motion.div>
+                <h4 className="text-lg font-bold text-[#264653] text-center">{achievement.title}</h4>
+                <p className="mt-2 text-sm text-gray-600 text-center">{achievement.detail}</p>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Sports Programs CTA */}
-        <motion.div 
-          className="bg-gradient-to-r from-[#264653] to-[#1f3a45] text-white rounded-xl p-10 shadow-xl overflow-hidden relative"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
+        {/* CTA Section */}
+        <div className="mt-16 bg-gradient-to-r from-[#264653] to-[#1f3a45] text-white rounded-lg p-8 shadow-lg overflow-hidden relative">
           {/* Decorative elements */}
           <div className="absolute -top-16 -right-16 w-32 h-32 bg-white/5 rounded-full"></div>
           <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/5 rounded-full"></div>
           
-          <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-            <h3 className="text-3xl font-bold">Join Our Elite Sports Programs</h3>
+          <div className="text-center relative z-10 space-y-8">
+            <h3 className="text-2xl font-bold">Join Our Elite Sports Programs</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <motion.div 
-                className="bg-white/10 p-6 rounded-lg"
-                whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.15)' }}
-              >
-                <div className="rounded-full bg-white/20 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <User className="w-8 h-8" />
-                </div>
-                <h4 className="font-bold mb-2">Professional Coaches</h4>
-                <p className="text-sm text-gray-200">Learn from experts with years of experience</p>
-              </motion.div>
+              <div className="p-6 rounded-lg transition-all duration-500 transform hover:scale-105 bg-white/10 hover:bg-white/15">
+                <User className="w-8 h-8 text-white mx-auto mb-4" />
+                <h4 className="font-bold">Professional Coaches</h4>
+                <p className="mt-2 text-sm text-gray-200">Learn from experts with years of experience</p>
+              </div>
               
-              <motion.div 
-                className="bg-white/10 p-6 rounded-lg"
-                whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.15)' }}
-              >
-                <div className="rounded-full bg-white/20 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Trophy className="w-8 h-8" />
-                </div>
-                <h4 className="font-bold mb-2">Regular Tournaments</h4>
-                <p className="text-sm text-gray-200">Compete at all levels from local to national</p>
-              </motion.div>
+              <div className="p-6 rounded-lg transition-all duration-500 transform hover:scale-105 bg-white/10 hover:bg-white/15">
+                <Trophy className="w-8 h-8 text-white mx-auto mb-4" />
+                <h4 className="font-bold">Regular Tournaments</h4>
+                <p className="mt-2 text-sm text-gray-200">Compete at all levels from local to national</p>
+              </div>
               
-              <motion.div 
-                className="bg-white/10 p-6 rounded-lg"
-                whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.15)' }}
-              >
-                <div className="rounded-full bg-white/20 w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <CalendarCheck className="w-8 h-8" />
-                </div>
-                <h4 className="font-bold mb-2">Structured Training</h4>
-                <p className="text-sm text-gray-200">Scientifically designed programs for all ages</p>
-              </motion.div>
+              <div className="p-6 rounded-lg transition-all duration-500 transform hover:scale-105 bg-white/10 hover:bg-white/15">
+                <CalendarCheck className="w-8 h-8 text-white mx-auto mb-4" />
+                <h4 className="font-bold">Structured Training</h4>
+                <p className="mt-2 text-sm text-gray-200">Scientifically designed programs for all ages</p>
+              </div>
             </div>
-            
-            <motion.div 
-              className="pt-6" 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                className="bg-[#E76F51] hover:bg-[#E76F51]/90 text-white px-8 py-3 text-lg rounded-full shadow-lg"
-                onClick={() => window.location.href = '#lead-capture'}
-              >
-                Enroll Now
-              </Button>
-            </motion.div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Call to Action Button */}
+        <div className="mt-12 text-center">
+          <p className="text-lg font-semibold text-[#E76F51]">
+            Join Our Sports Programs Today!
+          </p>
+          <button 
+className="mt-6 px-6 py-3 bg-[#E76F51] hover:bg-[#FF9F68] transition-all duration-500 text-white rounded-md flex items-center gap-2 mx-auto transform hover:-translate-y-1 hover:shadow-lg"
+onClick={() => window.location.href = '#lead-capture'}
+          >
+            <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Enroll Now
+          </button>
+        </div>
 
         {/* Testimonial */}
-        <motion.div 
-          className="mt-20 max-w-4xl mx-auto text-center bg-white p-8 rounded-xl shadow-lg border border-gray-100"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
+        <div className="mt-16 max-w-4xl mx-auto text-center p-8 rounded-lg bg-white shadow-md border border-gray-100">
           <div className="flex justify-center mb-4">
-            {[1, 2, 3, 4, 5].map((_, i) => (
-              <Star key={i} fill="#FFD700" className="w-5 h-5 text-yellow-400" />
+            {Array(5).fill().map((_, i) => (
+              <svg key={i} className="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
             ))}
           </div>
-          <blockquote className="text-xl italic text-gray-700 mb-6">
+          <blockquote className="text-lg italic text-gray-700 mb-6">
             "The sports program at Mysore International School has transformed my child. The coaches are outstanding, and the facilities are truly world-class. My son has not only improved his skills but also developed discipline and teamwork."
           </blockquote>
           <div>
             <p className="font-bold text-[#264653]">Rajesh Kumar</p>
             <p className="text-gray-500">Parent of Vikram, Class 8</p>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

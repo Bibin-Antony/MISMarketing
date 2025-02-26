@@ -150,14 +150,7 @@ const HeroSection = () => {
                 />
               </div>
               
-              {/* Stats card */}
-              <div className="absolute top-10 -left-10 bg-white px-6 py-4 rounded-lg shadow-lg z-20">
-                <div className="flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-[#8A2E88]" />
-                  <p className="font-bold text-[#8A2E88]">Join Our Community</p>
-                </div>
-                <p className="text-sm text-gray-600 mt-1">of Future Leaders</p>
-              </div>
+             
             </div>
           </motion.div>
         </div>

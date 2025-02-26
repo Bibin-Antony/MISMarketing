@@ -1,4 +1,3 @@
-// src/components/CampusTour.jsx
 import React from 'react';
 import { 
   PlayCircle, 
@@ -11,12 +10,18 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Button from './Button';
+import image1 from "../assets/images/SmartClass.png"
+import image2 from "../assets/images/sports_complex.png"
+import image3 from "../assets/images/science_lab.png"
+import image4 from "../assets/images/library.png"
+import campus from "../assets/images/campus.png"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  // CardFooter is missing from your import - removing it
 } from "./Card";
 
 const CampusTour = () => {
@@ -24,22 +29,30 @@ const CampusTour = () => {
     {
       icon: "🎓",
       title: "Smart Classrooms",
-      description: "Experience our technology-enabled learning spaces with interactive boards"
+      description: "Experience our technology-enabled learning spaces with interactive boards",
+      image: image1,
+      alt: "Modern classroom with interactive technology"
     },
     {
       icon: "⚽",
       title: "Sports Complex",
-      description: "Visit our FIFA-standard field and NBA-standard court"
+      description: "Visit our FIFA-standard field and NBA-standard court",
+      image: image2,
+      alt: "Sports complex with courts and fields"
     },
     {
       icon: "🧪",
       title: "Science Labs",
-      description: "Explore our state-of-the-art laboratories with modern equipment"
+      description: "Explore our state-of-the-art laboratories with modern equipment",
+      image: image3,
+      alt: "Advanced science laboratory setup"
     },
     {
       icon: "📚",
       title: "Library",
-      description: "Discover our extensive collection of books and digital resources"
+      description: "Discover our extensive collection of books and digital resources",
+      image: image4,
+      alt: "Modern library with study spaces"
     }
   ];
 
@@ -92,7 +105,7 @@ const CampusTour = () => {
           transition={{ duration: 0.7 }}
         >
           <img
-            src="/api/placeholder/1280/720"
+            src={campus}
             alt="Campus tour video thumbnail"
             className="w-full h-full object-cover"
           />
@@ -131,7 +144,21 @@ const CampusTour = () => {
           >
             {highlights.map((highlight, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-white/10 backdrop-blur-sm hover:bg-white/15 transition-all duration-300 border border-white/10 h-full overflow-hidden">
+                <Card className="bg-white/10 backdrop-blur-sm hover:bg-white/15 transition-all duration-300 border border-white/10 h-full overflow-hidden flex flex-col">
+                  <div className="relative w-full aspect-video overflow-hidden">
+                    <img 
+                      src={highlight.image} 
+                      alt={highlight.alt} 
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <div className="p-4">
+                        <span className="inline-block bg-[#8A2E88] px-3 py-1 rounded-full text-sm font-medium">
+                          View Details
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                   <CardHeader>
                     <div className="flex items-center gap-4">
                       <span className="text-4xl">{highlight.icon}</span>
@@ -145,6 +172,17 @@ const CampusTour = () => {
                       {highlight.description}
                     </CardDescription>
                   </CardContent>
+                  {/* Replace CardFooter with a regular div */}
+                  <div className="p-6 mt-auto">
+                    <motion.button 
+                      className="text-purple-200 hover:text-white text-sm flex items-center gap-2 transition-colors"
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      See more photos
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -244,7 +282,7 @@ const CampusTour = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Button 
-              className="bg-white hover:bg-gray-100 text-[#8A2E88] px-8 py-3 rounded-full shadow-lg flex items-center gap-2 mx-auto"
+              className="bg-white hover:bg-purple-100 text-[#8A2E88] px-8 py-3 rounded-full shadow-lg flex items-center gap-2 mx-auto"
             >
               Start Virtual Tour
               <ArrowRight className="w-5 h-5" />

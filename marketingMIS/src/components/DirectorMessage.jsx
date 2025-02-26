@@ -7,6 +7,7 @@ import {
   BookOpen,
   Users
 } from 'lucide-react';
+import image1 from "../assets/images/chairman.jpg"
 import { motion } from 'framer-motion';
 import Button from './Button';
 import {
@@ -96,7 +97,7 @@ const DirectorMessage = () => {
                 <div className="relative">
                   <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-[#8A2E88] to-[#6A1B67] p-1">
                     <img
-                      src="/api/placeholder/400/400"
+                      src={image1}
                       alt="Dr. Joseph K Thomas, Chairman"
                       className="w-full h-full object-cover rounded-lg"
                     />

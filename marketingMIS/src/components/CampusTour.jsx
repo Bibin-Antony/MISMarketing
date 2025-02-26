@@ -282,7 +282,7 @@ const CampusTour = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Button 
-              className="bg-white hover:bg-purple-100 text-[#8A2E88] px-8 py-3 rounded-full shadow-lg flex items-center gap-2 mx-auto"
+              className=" hover:bg-purple-100 text-purple-600 px-8 py-3 rounded-full shadow-lg flex items-center gap-2 mx-auto"
             >
               Start Virtual Tour
               <ArrowRight className="w-5 h-5" />

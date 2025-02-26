@@ -91,7 +91,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <div className="w-full bg-[#8A2E88] py-16 md:py-24 relative overflow-hidden">
+    <div className=" bg-[#8A2E88] w-[100vw] py-16 md:py-24 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-40 h-40 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-60 h-60 bg-white opacity-5 rounded-full translate-x-1/3 translate-y-1/3"></div>

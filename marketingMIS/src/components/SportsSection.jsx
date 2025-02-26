@@ -64,7 +64,7 @@ const SportsSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-white sm:py-16 lg:py-20 overflow-hidden">
+    <section className="py-12 bg-white sm:py-16 w-[100vw] lg:py-20 overflow-hidden">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
         {/* Background decorative elements */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#8A2E88]/10 rounded-full"></div>

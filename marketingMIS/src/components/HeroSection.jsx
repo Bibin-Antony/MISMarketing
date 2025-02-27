@@ -104,7 +104,7 @@ const HeroSection = () => {
               
               <div className="relative z-10">
                 <h2 className="text-[#8A2E88] text-2xl font-bold mb-2">Admission Enquiry</h2>
-                <p className="text-gray-600 mb-6">Limited seats available for Academic Year 2024-25</p>
+                <p className="text-gray-600 mb-6">Limited seats available for Academic Year 2025-26</p>
                 
                 <form>
                   <div className="mb-4">

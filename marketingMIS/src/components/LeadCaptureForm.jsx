@@ -131,7 +131,7 @@ const LeadCaptureForm = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="text-2xl text-[#264653]">Admission Enquiry</CardTitle>
                 <CardDescription className="text-base">
-                  Limited seats available for Academic Year 2024-25
+                  Limited seats available for Academic Year 2025-26
                 </CardDescription>
               </CardHeader>
               

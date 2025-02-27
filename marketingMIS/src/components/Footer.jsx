@@ -38,8 +38,8 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#F4A261] flex-shrink-0" />
                 <p className="text-gray-300">
-                  123 Education Lane,<br />
-                  Mysore, Karnataka 570001
+                Mysore International School # 92/1-5,<br />
+                   HD Kote Road, Rayanakere Post, SH 33, Karnataka 570008
                 </p>
               </div>
               <div className="flex items-center gap-3">

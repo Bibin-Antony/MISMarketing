@@ -1,6 +1,6 @@
 // Header.jsx
 import React, { useState } from 'react';
-import { Menu, X, Phone, Calendar } from 'lucide-react';
+import { Menu, X, UserPlus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from './Button';
 import logo from "../assets/Logos/PrimaryLogo.png";
@@ -11,7 +11,7 @@ const Header = () => {
   const navItems = [
     { name: 'Home', href: '#hero' },
     { name: 'Why Choose Us', href: '#why-choose-us' },
-    { name: 'Academics', href: '#academics' },
+    { name: 'Awards', href: '#awards' },
     { name: 'Sports', href: '#sports' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'Campus Tour', href: '#campus-tour' },
@@ -56,7 +56,7 @@ const Header = () => {
               <img
                 src={logo}
                 alt="Mysore International School Logo"
-                className="h-12 w-auto"
+                className="h-20 w-auto"
               />
             </motion.div>
 
@@ -81,27 +81,19 @@ const Header = () => {
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* Register Today Button */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="hidden md:flex items-center space-x-4"
+              className="hidden md:flex items-center"
             >
               <Button
-                variant="outline"
-                className="flex items-center gap-2 border-[#8A2E88] text-[#8A2E88] hover:bg-[#8A2E88] hover:text-white"
-                onClick={() => window.location.href = '#contact'}
+                className="flex items-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white px-6 py-3"
+                onClick={() => window.location.href = '#lead-capture'}
               >
-                <Phone className="w-4 h-4" />
-                Call Us
-              </Button>
-              <Button
-                className="flex items-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white"
-                onClick={() => window.location.href = '#campus-tour'}
-              >
-                <Calendar className="w-4 h-4" />
-                Book Tour
+                <UserPlus className="w-4 h-4" />
+                Register Today
               </Button>
             </motion.div>
 
@@ -148,25 +140,14 @@ const Header = () => {
               ))}
               <motion.div variants={itemVariants} className="pt-8">
                 <Button
-                  variant="outline"
-                  className="w-full mb-4 flex items-center justify-center gap-2 border-[#8A2E88] text-[#8A2E88] hover:bg-[#8A2E88] hover:text-white py-3"
+                  className="w-full flex items-center justify-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white px-6 py-4"
                   onClick={() => {
-                    window.location.href = '#contact';
+                    window.location.href = '#lead-capture';
                     setIsMenuOpen(false);
                   }}
                 >
-                  <Phone className="w-5 h-5" />
-                  Call Us
-                </Button>
-                <Button
-                  className="w-full flex items-center justify-center gap-2 bg-[#E76F51] hover:bg-[#E76F51]/90 text-white py-3"
-                  onClick={() => {
-                    window.location.href = '#campus-tour';
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  <Calendar className="w-5 h-5" />
-                  Book Tour
+                  <UserPlus className="w-5 h-5" />
+                  Register Today
                 </Button>
               </motion.div>
             </motion.div>
@@ -184,8 +165,6 @@ const Header = () => {
       
       {/* Main content space compensation */}
       <div className="h-20"></div>
-      
-      {/* Footer removed as requested */}
     </>
   );
 };

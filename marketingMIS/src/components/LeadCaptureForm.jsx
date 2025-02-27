@@ -1,7 +1,6 @@
 // LeadCaptureForm.jsx
 import React, { useState } from 'react';
-import map from "../assets/images/map.png"
-import parent from "../assets/images/parent.png"
+import parent from "../assets/images/parent.png";
 import { 
   Rocket, 
   Send, 
@@ -16,7 +15,6 @@ import {
 import { motion } from 'framer-motion';
 import Button from './Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './Card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './Select';
 import { Input } from './Input';
 import { Label } from './Label';
 import { Alert, AlertDescription } from './Alert';
@@ -30,9 +28,7 @@ const LeadCaptureForm = () => {
   });
 
   const [formStatus, setFormStatus] = useState({
-    isSubmitting: false,
-    isSubmitted: false,
-    error: null
+    isSubmitted: false
   });
 
   const handleInputChange = (e) => {
@@ -50,34 +46,18 @@ const LeadCaptureForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus({ isSubmitting: true, isSubmitted: false, error: null });
-
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setFormStatus({
-        isSubmitting: false,
-        isSubmitted: true,
-        error: null
-      });
-      
-      // Reset form
-      setFormData({
-        parentName: '',
-        email: '',
-        phone: '',
-        childGrade: '',
-      });
-    } catch (error) {
-      setFormStatus({
-        isSubmitting: false,
-        isSubmitted: false,
-        error: 'Something went wrong. Please try again.'
-      });
-    }
+    // Form submission logic will be implemented later
+    alert("Form submitted! We'll handle the backend logic later.");
+    
+    // Reset form
+    setFormData({
+      parentName: '',
+      email: '',
+      phone: '',
+      childGrade: '',
+    });
   };
 
   const grades = [
@@ -112,7 +92,7 @@ const LeadCaptureForm = () => {
   };
 
   return (
-    <div className="w-[100vw] bg-white py-20 relative">
+    <section id="lead-capture" className="w-[100vw] bg-white py-20 relative">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-gray-50 to-white"></div>
       
@@ -209,33 +189,23 @@ const LeadCaptureForm = () => {
                       <Label htmlFor="childGrade" className="text-[#264653] font-medium">
                         🔹 Child's Grade Applying For <span className="text-red-500">*</span>
                       </Label>
-                      <Select 
+                      <select
+                        id="childGrade"
+                        name="childGrade"
                         value={formData.childGrade}
-                        onValueChange={handleGradeChange}
+                        onChange={(e) => handleGradeChange(e.target.value)}
+                        className="w-full rounded-md border border-gray-300 p-2 focus:border-[#8A2E88] focus:ring-[#8A2E88] focus:outline-none"
                         required
                       >
-                        <SelectTrigger className="focus:border-[#8A2E88] focus:ring-[#8A2E88]">
-                          <SelectValue placeholder="Select grade" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {grades.map((grade) => (
-                            <SelectItem key={grade} value={grade.toLowerCase()}>
-                              {grade}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                        <option value="" disabled>Select grade</option>
+                        {grades.map((grade) => (
+                          <option key={grade} value={grade.toLowerCase()}>
+                            {grade}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
-
-                  {formStatus.error && (
-                    <Alert variant="destructive">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>
-                        {formStatus.error}
-                      </AlertDescription>
-                    </Alert>
-                  )}
 
                   {formStatus.isSubmitted && (
                     <Alert className="bg-green-50 border-green-200">
@@ -254,10 +224,9 @@ const LeadCaptureForm = () => {
                       <Button 
                         type="submit" 
                         className="bg-[#E76F51] hover:bg-[#E76F51]/90 text-white w-full text-lg py-6 rounded-lg shadow-md"
-                        disabled={formStatus.isSubmitting}
                       >
                         <Send className="w-5 h-5 mr-2" />
-                        {formStatus.isSubmitting ? 'Submitting...' : '📩 Submit & Get More Info'}
+                         Submit & Get More Info
                       </Button>
                     </motion.div>
                     
@@ -303,8 +272,9 @@ const LeadCaptureForm = () => {
                     <div>
                       <h3 className="font-semibold text-[#264653] mb-1">Call Us</h3>
                       <p className="text-gray-600 text-sm">
-                        +91 XXXXXXXXXX<br />
-                        +91 XXXXXXXXXX
+                        0821 2971010<br />
+                        +91 8884 300 400
+
                       </p>
                     </div>
                   </CardContent>
@@ -320,8 +290,7 @@ const LeadCaptureForm = () => {
                     <div>
                       <h3 className="font-semibold text-[#264653] mb-1">Email Us</h3>
                       <p className="text-gray-600 text-sm">
-                        admissions@mis.edu<br />
-                        info@mis.edu
+                      admissions@mysoreinternationalschool.com <br />
                       </p>
                     </div>
                   </CardContent>
@@ -372,7 +341,7 @@ const LeadCaptureForm = () => {
               </div>
             </Card>
             
-            {/* Map */}
+            {/* Google Maps Embed - Replaced static image */}
             <Card className="border-0 shadow-xl rounded-xl overflow-hidden">
               <CardHeader className="pb-0">
                 <div className="flex items-center gap-3">
@@ -384,45 +353,26 @@ const LeadCaptureForm = () => {
               </CardHeader>
               <CardContent className="p-0 mt-4">
                 <div className="aspect-[4/3] rounded-b-xl overflow-hidden">
-                  <div className="w-full h-full relative">
-                    <img
-                      src={map} 
-                      alt="School location map"
-                      className="w-full h-full object-cover"
-                    />
-                   
-                  </div>
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15575.25982728258!2d76.5866804!3d12.2290059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf644f7358cc0d%3A0xe4fb32672e467b68!2sMysore%20International%20School!5e0!3m2!1sen!2sin!4v1708608743857!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Mysore International School Google Map"
+                    className="w-full h-full"
+                  ></iframe>
                 </div>
               </CardContent>
             </Card>
             
-            {/* Testimonial */}
-            <motion.div 
-              className="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-[#E76F51]"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <p className="italic text-gray-700">
-                "Choosing Mysore International School was the best decision we made for our daughter. The balanced approach to education and amazing faculty have helped her grow tremendously."
-              </p>
-              <div className="mt-4 flex items-center gap-3">
-                <img 
-                  src={parent} 
-                  alt="Priya Sharma"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-[#264653]">Priya Sharma</p>
-                  <p className="text-sm text-gray-600">Parent of Ananya, Grade 5</p>
-                </div>
-              </div>
-            </motion.div>
+          
           </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

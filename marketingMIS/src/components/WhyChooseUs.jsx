@@ -93,7 +93,7 @@ const FeaturesSection = () => {
                                 </li>
                                 <li className="flex items-center">
                                     <span className="inline-block w-2 h-2 bg-[#8A2E88] group-hover:bg-gradient-to-r group-hover:from-[#8A2E88] group-hover:to-[#264653] rounded-full mr-2 transition-colors duration-300"></span>
-                                    4-Lane Professional Running Track
+                                    5-Lane Professional Running Track
                                 </li>
                             </ul>
                         </div>
@@ -157,21 +157,7 @@ const FeaturesSection = () => {
                     </div>
                 </div>
 
-                <div className="mt-12 text-center">
-                    <p className="text-lg font-semibold text-[#E76F51]">
-                        Limited Seats Available – Apply Now!
-                    </p>
-                    <button 
-className="mt-6 px-6 py-3 bg-[#E76F51] hover:bg-[#F4A261] transition-all duration-500 text-white rounded-md flex items-center gap-2 mx-auto transform hover:-translate-y-1 hover:shadow-lg"
-onClick={() => window.location.href = '#lead-capture'}
-                    >
-                        <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        Request More Info
-                    </button>
-                </div>
+                
             </div>
         </section>
     )

@@ -3,89 +3,32 @@ import React from 'react';
 import { 
   Phone, 
   Mail, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Youtube 
+  MapPin 
 } from 'lucide-react';
+
+import logo from "../assets/images/logowhite.png"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerSections = {
-    quickLinks: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Admissions', href: '#admissions' },
-      { name: 'Academics', href: '#academics' },
-      { name: 'Sports', href: '#sports' },
-      { name: 'Campus Life', href: '#campus' },
-    ],
-    academics: [
-      { name: 'Curriculum', href: '#curriculum' },
-      { name: 'Faculty', href: '#faculty' },
-      { name: 'Library', href: '#library' },
-      { name: 'Research', href: '#research' },
-    ],
-    facilities: [
-      { name: 'Sports Complex', href: '#sports' },
-      { name: 'Labs', href: '#labs' },
-      { name: 'Transport', href: '#transport' },
-      { name: 'Cafeteria', href: '#cafeteria' },
-    ]
-  };
-
-  const socialLinks = [
-    { icon: <Facebook className="w-5 h-5" />, href: '#', label: 'Facebook' },
-    { icon: <Twitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
-    { icon: <Instagram className="w-5 h-5" />, href: '#', label: 'Instagram' },
-    { icon: <Youtube className="w-5 h-5" />, href: '#', label: 'Youtube' },
-  ];
+  // No social links
 
   return (
-    <footer className="bg-[#264653] text-white pt-12 pb-6">
+    <footer className="bg-[#8A2E88] text-white pt-12 pb-6">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {/* School Info */}
           <div className="space-y-4">
             <img 
-              src="/api/placeholder/150/50" 
+              src={logo}
               alt="Mysore International School" 
-              className="h-12 w-auto"
+              className="h-28 w-auto"
             />
             <p className="text-gray-300">
               Providing world-class education and shaping future leaders through academic excellence,
               sports, and character development.
             </p>
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="hover:text-[#F4A261] transition-colors"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {footerSections.quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a 
-                    href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {/* Social media section removed */}
           </div>
 
           {/* Contact Info */}
@@ -101,11 +44,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#F4A261]" />
-                <p className="text-gray-300">+91 XXXXXXXXXX</p>
+                <p className="text-gray-300">+91 8884 300 400</p>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#F4A261]" />
-                <p className="text-gray-300">info@mis.edu</p>
+                <p className="text-gray-300">admissions@mysoreinternationalschool.com</p>
               </div>
             </div>
           </div>

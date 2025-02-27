@@ -7,7 +7,7 @@ import {
   Quote
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import image1 from "../assets/images/students1.jpg"
+import image1 from "../assets/images/student.jpg"
 // Assuming Button and Card components are imported elsewhere
 const Button = ({ children, className, onClick }) => (
   <button className={className} onClick={onClick}>
@@ -276,26 +276,6 @@ const TestimonialsSection = () => {
           </motion.div>
         </div>
 
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <p className="text-white text-xl mb-6">Ready to give your child the best education experience?</p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              className="bg-white hover:bg-gray-100 text-[#8A2E88] text-lg px-8 py-3 rounded-full shadow-xl"
-              onClick={() => window.location.href = '#lead-capture'}
-            >
-              Join Our Thriving Community – Apply Now!
-            </Button>
-          </motion.div>
-        </motion.div>
       </div>
     </div>
   );

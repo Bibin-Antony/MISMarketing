@@ -1,4 +1,3 @@
-// AwardsSection.jsx
 import React from 'react';
 import { 
   Award,
@@ -68,8 +67,6 @@ const AwardsSection = () => {
   return (
     <div className="w-[100vw] bg-white py-20 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gray-100 rounded-full -translate-y-1/2 translate-x-1/4"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gray-100 rounded-full translate-y-1/2 -translate-x-1/4"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
@@ -103,7 +100,6 @@ const AwardsSection = () => {
           {awards.map((award, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg overflow-hidden h-full group">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-[#F4A261]"></div>
                 <CardHeader className="pt-8 pb-4 text-center">
                   <motion.div 
                     className="flex justify-center mb-6 bg-[#F4A261]/10 p-5 rounded-full w-24 h-24 mx-auto"
@@ -128,36 +124,7 @@ const AwardsSection = () => {
           ))}
         </motion.div>
 
-        {/* Additional Recognitions */}
-        <motion.div 
-          className="bg-[#264653] text-white rounded-xl p-10 shadow-xl mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-3xl font-bold mb-8 text-center">
-              Additional Recognitions
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {recognitions.map((recognition, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex items-center gap-4 bg-white/10 p-5 rounded-lg hover:bg-white/15 transition-colors"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <Award className="w-8 h-8 text-[#F4A261] flex-shrink-0" />
-                  <span className="text-lg">{recognition}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+      
 
         {/* Achievement Stats */}
         <motion.div 
@@ -184,49 +151,7 @@ const AwardsSection = () => {
           ))}
         </motion.div>
 
-        {/* CTA Section */}
-        <motion.div 
-          className="text-center space-y-6 max-w-3xl mx-auto bg-gray-50 p-10 rounded-xl shadow-sm"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-3xl font-bold text-[#264653]">
-            Join Our Award-Winning Institution
-          </h3>
-          <p className="text-xl text-gray-600">
-            Give your child the advantage of studying at one of Karnataka's most prestigious schools
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 my-8">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <span className="text-gray-700">World-class facilities</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <span className="text-gray-700">Expert faculty</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <span className="text-gray-700">Proven track record</span>
-            </div>
-          </div>
-          
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              className="bg-[#E76F51] hover:bg-[#E76F51]/90 text-white text-lg px-8 py-3 rounded-full shadow-md flex items-center gap-2 mx-auto"
-              onClick={() => window.location.href = '#lead-capture'}
-            >
-              Apply Now
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </motion.div>
-        </motion.div>
+   
       </div>
     </div>
   );

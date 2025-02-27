@@ -11,17 +11,16 @@ import {
 import { motion } from 'framer-motion';
 import Button from './Button';
 import image1 from "../assets/images/SmartClass.png"
-import image2 from "../assets/images/sports_complex.png"
-import image3 from "../assets/images/science_lab.png"
-import image4 from "../assets/images/library.png"
-import campus from "../assets/images/campus.png"
+import image2 from "../assets/images/ground.jpg"
+import image3 from "../assets/images/sciencelab.jpg"
+import image4 from "../assets/images/library.jpg"
+import campus from "../assets/images/virtualtour.jpg"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  // CardFooter is missing from your import - removing it
 } from "./Card";
 
 const CampusTour = () => {
@@ -74,6 +73,11 @@ const CampusTour = () => {
     }
   };
 
+  // Function to handle video button click
+  const handleVirtualTourClick = () => {
+    window.open("https://maps.app.goo.gl/wqS6UPWtzunEUpoD6", "_blank");
+  };
+
   return (
     <div className="w-[100vw] bg-[#8A2E88] py-20 text-white relative overflow-hidden">
       {/* Decorative elements */}
@@ -96,7 +100,7 @@ const CampusTour = () => {
           </p>
         </motion.div>
 
-        {/* Video Section */}
+        {/* Video Section - Updated with link to Google Maps */}
         <motion.div 
           className="relative aspect-video rounded-xl overflow-hidden bg-black/20 shadow-2xl mb-16"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -111,16 +115,18 @@ const CampusTour = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center">
             <motion.button 
-              className="bg-white hover:bg-gray-100 text-[#8A2E88] rounded-full w-24 h-24 flex items-center justify-center shadow-xl"
+              className="bg-white hover:bg-gray-100 text-[#8A2E88] rounded-full w-24 h-24 flex items-center justify-center shadow-xl cursor-pointer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              onClick={handleVirtualTourClick}
+              aria-label="View 3D virtual tour on Google Maps"
             >
               <PlayCircle className="w-16 h-16" />
             </motion.button>
           </div>
           <div className="absolute bottom-8 left-8 text-white">
             <h3 className="text-2xl font-bold mb-2">Take a Virtual Walkthrough</h3>
-            <p className="text-purple-100 max-w-lg">Experience our state-of-the-art campus facilities in this guided video tour</p>
+            <p className="text-purple-100 max-w-lg">Experience our state-of-the-art campus facilities in this guided virtual tour</p>
           </div>
         </motion.div>
 
@@ -151,13 +157,7 @@ const CampusTour = () => {
                       alt={highlight.alt} 
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4">
-                        <span className="inline-block bg-[#8A2E88] px-3 py-1 rounded-full text-sm font-medium">
-                          View Details
-                        </span>
-                      </div>
-                    </div>
+                
                   </div>
                   <CardHeader>
                     <div className="flex items-center gap-4">
@@ -172,17 +172,8 @@ const CampusTour = () => {
                       {highlight.description}
                     </CardDescription>
                   </CardContent>
-                  {/* Replace CardFooter with a regular div */}
-                  <div className="p-6 mt-auto">
-                    <motion.button 
-                      className="text-purple-200 hover:text-white text-sm flex items-center gap-2 transition-colors"
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      See more photos
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.button>
-                  </div>
+                  {/* Regular div instead of CardFooter */}
+                 
                 </Card>
               </motion.div>
             ))}
@@ -221,7 +212,7 @@ const CampusTour = () => {
                   <div className="bg-[#8A2E88]/10 p-3 rounded-full">
                     <Phone className="w-6 h-6 text-[#8A2E88]" />
                   </div>
-                  <span className="text-gray-700">Call us for instant booking: +91 XXXXXXXXXX</span>
+                  <span className="text-gray-700">Call us for instant booking: 0821 2971010</span>
                 </div>
               </div>
             </div>
@@ -261,34 +252,7 @@ const CampusTour = () => {
               </motion.div>
             </div>
           </div>
-        </motion.div>
-
-        {/* Virtual Tour Option */}
-        <motion.div 
-          className="text-center space-y-6 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl font-bold">
-            Can't Visit Us in Person?
-          </h3>
-          <p className="text-purple-100">
-            Take a virtual tour of our campus from the comfort of your home. Explore our facilities online and get a feel for our school environment.
-          </p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              className=" hover:bg-purple-100 text-purple-600 px-8 py-3 rounded-full shadow-lg flex items-center gap-2 mx-auto"
-            >
-              Start Virtual Tour
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </motion.div>
-        </motion.div>
+        </motion.div>   
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircle, Calendar, ArrowRight, Phone, Mail, Home } from 'lucide-react';
 import Button from './Button';
+import { useLocation, Navigate } from 'react-router-dom';
 
 // Simple Confetti Component
 const Confetti = () => {
@@ -76,8 +77,33 @@ const Confetti = () => {
 };
 
 const ThankYou = () => {
-  // Generate random reference number
-  const referenceNumber = `MIS-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`;
+  // Get the location object to access state passed from previous component
+  const location = useLocation();
+  
+  // Get reference number from location state or session storage
+  const [referenceNumber, setReferenceNumber] = useState('');
+  
+  // Check if user has a valid reference number
+  useEffect(() => {
+    // If reference number is in location state
+    if (location.state && location.state.referenceNumber) {
+      // Save reference number to session storage for persistence
+      sessionStorage.setItem('referenceNumber', location.state.referenceNumber);
+      setReferenceNumber(location.state.referenceNumber);
+    } 
+    // If no reference number in location state, try to get from session storage
+    else {
+      const storedRefNumber = sessionStorage.getItem('referenceNumber');
+      if (storedRefNumber) {
+        setReferenceNumber(storedRefNumber);
+      }
+    }
+  }, [location]);
+  
+  // If no reference number is available, redirect to homepage
+  if (!referenceNumber && !location.state?.referenceNumber && !sessionStorage.getItem('referenceNumber')) {
+    return <Navigate to="/" replace />;
+  }
   
   return (
     <div className="min-h-screen bg-[#8A2E88] flex flex-col items-center justify-center py-12 px-4 relative overflow-hidden">
@@ -162,7 +188,11 @@ const ThankYou = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <Button 
             className="bg-[#E76F51] hover:bg-[#E76F51]/90 text-white py-3 flex items-center justify-center gap-2"
-            onClick={() => window.location.href = '/'}
+            onClick={() => {
+              // Clear the reference number from session storage when returning to homepage
+              sessionStorage.removeItem('referenceNumber');
+              window.location.href = '/';
+            }}
           >
             <Home className="w-4 h-4" /> Return to Homepage
           </Button>
@@ -187,8 +217,6 @@ const ThankYou = () => {
           </div>
         </div>
       </div>
-      
-     
     </div>
   );
 };

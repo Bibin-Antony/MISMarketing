@@ -10,6 +10,7 @@ import CampusTour from '../components/CampusTour';
 import LeadCaptureForm from '../components/LeadCaptureForm';
 import Footer from '../components/Footer';
 import StickyAdmission from '../components/StickyAdmission';
+import ThankYou from '../components/ThankYou';
 
 const MarketingPage = () => {
   return (
@@ -51,6 +52,8 @@ const MarketingPage = () => {
         <section id="lead-capture" >
           <LeadCaptureForm />
         </section>
+
+       
       </div>
 
       {/* Footer */}

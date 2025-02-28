@@ -168,7 +168,7 @@ const ThankYou = () => {
           </Button>
           <Button 
             className="bg-[#8A2E88] hover:bg-[#8A2E88]/90 text-white py-3 flex items-center justify-center gap-2"
-            onClick={() => window.location.href = '#campus-tour'}
+            onClick={() => window.location.href = 'https://maps.app.goo.gl/wqS6UPWtzunEUpoD6'}
           >
             Take Virtual Tour <ArrowRight className="w-4 h-4" />
           </Button>

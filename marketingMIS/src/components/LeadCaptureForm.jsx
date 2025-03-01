@@ -18,51 +18,84 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './Car
 import { Input } from './Input';
 import { Label } from './Label';
 import { Alert, AlertDescription } from './Alert';
-
+import service from '../services/service';
+import { useNavigate } from 'react-router-dom';
 const LeadCaptureForm = () => {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     parentName: '',
     email: '',
     phone: '',
-    childGrade: '',
+    grade: '',
+    referenceNumber: ''
   });
-
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [error, setError] = useState('');
   const [formStatus, setFormStatus] = useState({
     isSubmitted: false
   });
-
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setForm(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
   const handleGradeChange = (value) => {
-    setFormData(prev => ({
+    setForm(prev => ({
       ...prev,
-      childGrade: value
+      grade: value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Form submission logic will be implemented later
-    alert("Form submitted! We'll handle the backend logic later.");
     
-    // Reset form
-    setFormData({
-      parentName: '',
-      email: '',
-      phone: '',
-      childGrade: '',
-    });
+    if (form.parentName === '' || form.email === '' || form.phone === '' || form.grade === '') {
+      setError('All fields are required');
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const referenceNumber = `MIS-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`;
+      form.referenceNumber = referenceNumber;
+      // Make API call
+      await service.submitForm(form);
+      
+      // Handle success
+      setShowSuccess(true);
+      setForm({
+        parentName: '',
+        email: '',
+        phone: '',
+        grade: ''
+      });
+      
+      // Hide success message after 3 seconds
+      setTimeout(() => setShowSuccess(false), 1000);
+      navigate('/Thankyou', { 
+        state: { referenceNumber }
+      });
+    } catch (err) {
+      // Handle error
+      setError(err.response?.data?.err || 'Failed to submit form. Please try again.');
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+    } finally {
+      setLoading(false);
+    }
+    
   };
 
   const grades = [
-    'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5',
-    'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10'
+    "1","2","3","4","5","6","7","8","9","10"
   ];
 
   const benefits = [
@@ -136,6 +169,26 @@ const LeadCaptureForm = () => {
               </CardHeader>
               
               <CardContent>
+                {/* Success message */}
+                {showSuccess && (
+                  <Alert className="mb-4 bg-green-50 border border-green-200 text-green-800">
+                    <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                    <AlertDescription>
+                      Thank you for your interest! Our admissions team will contact you shortly.
+                    </AlertDescription>
+                  </Alert>
+                )}
+
+                {/* Error message */}
+                {showError && (
+                  <Alert className="mb-4 bg-red-50 border border-red-200 text-red-800">
+                    <AlertCircle className="h-5 w-5 text-red-600 mr-2" />
+                    <AlertDescription>
+                      {error}
+                    </AlertDescription>
+                  </Alert>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
                     <div className="space-y-2">
@@ -145,7 +198,7 @@ const LeadCaptureForm = () => {
                       <Input
                         id="parentName"
                         name="parentName"
-                        value={formData.parentName}
+                        value={form.parentName}
                         onChange={handleInputChange}
                         placeholder="Enter your full name"
                         className="focus:border-[#8A2E88] focus:ring-[#8A2E88]"
@@ -161,7 +214,7 @@ const LeadCaptureForm = () => {
                         id="email"
                         name="email"
                         type="email"
-                        value={formData.email}
+                        value={form.email}
                         onChange={handleInputChange}
                         placeholder="Enter your email address"
                         className="focus:border-[#8A2E88] focus:ring-[#8A2E88]"
@@ -177,7 +230,7 @@ const LeadCaptureForm = () => {
                         id="phone"
                         name="phone"
                         type="tel"
-                        value={formData.phone}
+                        value={form.phone}
                         onChange={handleInputChange}
                         placeholder="Enter your phone number"
                         className="focus:border-[#8A2E88] focus:ring-[#8A2E88]"
@@ -190,9 +243,9 @@ const LeadCaptureForm = () => {
                         🔹 Child's Grade Applying For <span className="text-red-500">*</span>
                       </Label>
                       <select
-                        id="childGrade"
-                        name="childGrade"
-                        value={formData.childGrade}
+                        id="grade"
+                        name="grade"
+                        value={form.grade}
                         onChange={(e) => handleGradeChange(e.target.value)}
                         className="w-full rounded-md border border-gray-300 p-2 focus:border-[#8A2E88] focus:ring-[#8A2E88] focus:outline-none"
                         required
@@ -207,15 +260,6 @@ const LeadCaptureForm = () => {
                     </div>
                   </div>
 
-                  {formStatus.isSubmitted && (
-                    <Alert className="bg-green-50 border-green-200">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <AlertDescription className="text-green-800">
-                        Thank you for your interest! Our admissions team will contact you shortly.
-                      </AlertDescription>
-                    </Alert>
-                  )}
-
                   <div className="pt-4">
                     <motion.div
                       whileHover={{ scale: 1.02 }}
@@ -223,10 +267,23 @@ const LeadCaptureForm = () => {
                     >
                       <Button 
                         type="submit" 
-                        className="bg-[#E76F51] hover:bg-[#E76F51]/90 text-white w-full text-lg py-6 rounded-lg shadow-md"
+                        disabled={loading}
+                        className={`bg-[#E76F51] hover:bg-[#E76F51]/90 text-white w-full text-lg py-6 rounded-lg shadow-md ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                       >
-                        <Send className="w-5 h-5 mr-2" />
-                         Submit & Get More Info
+                        {loading ? (
+                          <>
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Processing...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-5 h-5 mr-2" />
+                            Submit & Get More Info
+                          </>
+                        )}
                       </Button>
                     </motion.div>
                     

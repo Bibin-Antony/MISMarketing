@@ -26,7 +26,8 @@ const LeadCaptureForm = () => {
     email: '',
     phone: '',
     grade: '',
-    referenceNumber: ''
+    referenceNumber: '',
+    childName: ''
   });
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -55,7 +56,7 @@ const LeadCaptureForm = () => {
     e.preventDefault();
     // Form submission logic will be implemented later
     
-    if (form.parentName === '' || form.email === '' || form.phone === '' || form.grade === '') {
+    if (form.parentName === '' || form.email === '' || form.phone === '' || form.grade === ''||form.childName === '') {
       setError('All fields are required');
       setShowError(true);
       setTimeout(() => setShowError(false), 3000);
@@ -75,7 +76,9 @@ const LeadCaptureForm = () => {
         parentName: '',
         email: '',
         phone: '',
-        grade: ''
+        grade: '',
+        referenceNumber: '',
+        childName: ''
       });
       
       // Hide success message after 3 seconds
@@ -237,6 +240,20 @@ const LeadCaptureForm = () => {
                         required
                       />
                     </div>
+                    <div className="mb-4">
+                    <label className="block text-gray-700 mb-2 flex items-center">
+                      <div className="w-2 h-2 bg-[#E76F51] rounded-full mr-2"></div>
+                      Children Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      name="childName"
+                      onChange={handleInputChange}
+                      value={form.childName} 
+                      type="text" 
+                      placeholder="Enter your children name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8A2E88]" 
+                    />
+                  </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="childGrade" className="text-[#264653] font-medium">
